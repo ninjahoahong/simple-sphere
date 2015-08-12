@@ -10,45 +10,32 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
 		<script>
             var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+			var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild(renderer.domElement);
 
-            var dirX = new THREE.Vector3( 1, 0, 0 );
-            var originX = new THREE.Vector3( 0, 0, 0 );
-            var lengthX = 0.75;
-            var hexX = 0xff0000;
+            var axes = new THREE.AxisHelper( 1 );
+            scene.add( axes );
 
+            var dirX = new THREE.Vector3( 0, 1, 0 );
+            var originX = new THREE.Vector3( 0, 0, 0 );
+            var lengthX = 0.52;
+            var hexX = 0xff0000;
             var arrowX = new THREE.ArrowHelper( dirX, originX, lengthX, hexX );
             scene.add( arrowX );
             
-            var dirY = new THREE.Vector3( 0, 1, 0 );
-            var originY = new THREE.Vector3( 0, 0, 0 );
-            var lengthY = 0.75;
-            var hexY = 0x00ff00;
-
-            var arrowY = new THREE.ArrowHelper( dirY, originY, lengthY, hexY );
-            scene.add( arrowY );
-            
-            var dirZ = new THREE.Vector3( 0, 0, 1 );
-            var originZ = new THREE.Vector3( 0, 0, 0 );
-            var lengthZ = 0.75;
-            var hexZ = 0x0000ff;
-
-            var arrowZ = new THREE.ArrowHelper( dirZ, originZ, lengthZ, hexZ );
-            scene.add( arrowZ );
-
             var light = new THREE.PointLight( 0xffffff, 1.5, 100 );
-            light.position.set( -1, 5, 20 );
+            light.position.set( -0.5, 0.2, 20 );
             scene.add( light );
 
 			var geometry = new THREE.SphereGeometry(0.5, 32, 16);
-	        var material = new THREE.MeshPhongMaterial( { color: 0xffffff, transparent: true, opacity: 0.8 } );
+	        var material = new THREE.MeshPhongMaterial( { color: 0xffffff, transparent: true, opacity: 0.6 } );
 			var sphere = new THREE.Mesh(geometry, material);
 			scene.add(sphere);
-            camera.position.set(0, 0, 1.5);
+            camera.position.set(-0.5, 0.2, 1.5);
+            sphere.position.set(0.0, 0.0, 0.0);
 
 			var render = function () {
                 requestAnimationFrame(render);
